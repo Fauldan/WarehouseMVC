@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseMVC", "WarehouseMVC\WarehouseMVC.csproj", "{EC8657DC-08FA-42A5-AAA4-36E8C2EC588F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseMVC_DAL", "WarehouseMVC_DAL\WarehouseMVC_DAL.csproj", "{A402FB25-5B71-4C7C-AEF1-B48D820B6AAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC8657DC-08FA-42A5-AAA4-36E8C2EC588F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8657DC-08FA-42A5-AAA4-36E8C2EC588F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8657DC-08FA-42A5-AAA4-36E8C2EC588F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8657DC-08FA-42A5-AAA4-36E8C2EC588F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A402FB25-5B71-4C7C-AEF1-B48D820B6AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A402FB25-5B71-4C7C-AEF1-B48D820B6AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A402FB25-5B71-4C7C-AEF1-B48D820B6AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A402FB25-5B71-4C7C-AEF1-B48D820B6AAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5C3997F-B26A-4B99-9C10-77183C37E509}
+	EndGlobalSection
+EndGlobal

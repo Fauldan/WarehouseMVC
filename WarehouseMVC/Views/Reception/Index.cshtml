@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WarehouseMVC_DAL.Models.Reception>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Réceptions en attente de mise en stock</h2>
+
+<p>
+    @Html.ActionLink("Créer une nouvelle réception", "Create")
+</p>
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <th>
+                Id Réception
+            </th>
+            <th>
+                Id Article
+            </th>
+            <th>
+                Article
+            </th>
+            <th>
+                Quantité
+            </th>
+            <th>
+                Fournisseur
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceptionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FournisseurNom)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Confirmer la mise en stock", "ConfirmReception", new { id = item.ReceptionId }) |
+                    @Html.ActionLink("Afficher les détails", "Details", new { id = item.ReceptionId }) |
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ReceptionId }) |
+                    @Html.ActionLink("Annuler la réception", "Delete", new { id = item.ReceptionId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Retour à l'accueil", "Index", "Home")
+</div>

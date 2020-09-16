@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WarehouseMVC_DAL.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des articles</h2>
+
+<p>
+    @Html.ActionLink("Ajouter un article", "Create")
+</p>
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantite)
+            </th>
+            <th>
+                Id Categorie
+            </th>
+
+            <th>
+                Id Fournisseur
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategorieId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FournisseurId)
+        </td>
+
+        <td>
+            @Html.ActionLink("Modifier", "Edit", new { id = item.ArticleId }) |
+            @Html.ActionLink("Afficher les détails ", "Details", new { id = item.ArticleId }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.ArticleId })
+        </td>
+    </tr>
+        }
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Retour à l'accueil", "Index", "Home")
+</div>

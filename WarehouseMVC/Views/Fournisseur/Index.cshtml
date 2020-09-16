@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WarehouseMVC_DAL.Models.Fournisseur>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des fournisseurs</h2>
+
+<p>
+    @Html.ActionLink("Ajouter un fournisseur", "Create")
+</p>
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ville)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pays)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ville)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pays)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.FournisseurId }) |
+                    @Html.ActionLink("Afficher les détails", "Details", new { id = item.FournisseurId }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.FournisseurId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Retour à l'accueil", "Index", "Home")
+</div>
+

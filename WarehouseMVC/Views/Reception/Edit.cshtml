@@ -1,0 +1,62 @@
+﻿@model WarehouseMVC_DAL.Models.Reception
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Modification de la réception</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="jumbotron">
+        <div class="form-horizontal">
+            <h4></h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-lg-offset-1"><b>Article</b></div>
+                <div class="col-lg-offset-1">
+                    @Html.DropDownListFor(model => model.ArticleId, new List<SelectListItem>(Model.ListArticle.Select(a => new SelectListItem() { Text = a.Nom, Value = a.ArticleId.ToString() })))
+                    @Html.ValidationMessageFor(model => model.ArticleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-1"><b>Fournisseur</b></div>
+                <div class="col-lg-offset-1">
+                    @Html.DropDownListFor(model => model.FournisseurId, new List<SelectListItem>(Model.ListFournisseur.Select(f => new SelectListItem() { Text = f.Nom, Value = f.FournisseurId.ToString() })))
+                    @Html.ValidationMessageFor(model => model.FournisseurId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-1"><b>Utilisateur</b></div>
+                <div class="col-lg-offset-1">
+                    @Html.DropDownListFor(model => model.UtilisateurId, new List<SelectListItem>(Model.ListUtilisateur.Select(c => new SelectListItem() { Text = c.Nom, Value = c.UtilisateurId.ToString() })))
+                    @Html.ValidationMessageFor(model => model.UtilisateurId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-1">
+                    <b>Quantité reçue</b>
+                    @Html.EditorFor(model => model.Quantite, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantite, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Confirmer la modification" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Annuler", "Index")
+</div>

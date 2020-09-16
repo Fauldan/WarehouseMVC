@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WarehouseMVC_DAL.Models.Client>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des clients</h2>
+
+<p>
+    @Html.ActionLink("Ajouter un client", "Create")
+</p>
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomSociete)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ville)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomSociete)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ville)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ClientId }) |
+                    @Html.ActionLink("Afficher les détails ", "Details", new { id = item.ClientId }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ClientId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Retour à l'accueil", "Index", "Home")
+</div>

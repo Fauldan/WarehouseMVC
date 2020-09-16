@@ -1,0 +1,9 @@
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\bin\Debug\WarehouseMVC_DAL.dll
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\bin\Debug\WarehouseMVC_DAL.pdb
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\obj\Debug\WarehouseMVC_DAL.csprojAssemblyReference.cache
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\obj\Debug\WarehouseMVC_DAL.csproj.CoreCompileInputs.cache
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\obj\Debug\WarehouseMVC_DAL.csproj.CopyComplete
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\obj\Debug\WarehouseMVC_DAL.dll
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC_DAL\obj\Debug\WarehouseMVC_DAL.pdb

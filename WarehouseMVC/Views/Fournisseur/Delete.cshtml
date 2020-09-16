@@ -1,0 +1,31 @@
+﻿@model WarehouseMVC_DAL.Models.Fournisseur
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Supprimer un fournisseur</h2>
+
+<hr />
+<div class="jumbotron">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
+        </div>
+        <br />
+        @Html.ActionLink("Annuler", "Index")
+    }
+</div>

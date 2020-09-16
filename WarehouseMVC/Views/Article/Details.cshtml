@@ -1,0 +1,65 @@
+﻿@model WarehouseMVC_DAL.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Détail de l'article</h2>
+
+<p>
+    @Html.ActionLink("Créer un article", "Create")
+</p>
+<div class="jumbotron">
+    <h3>@Html.DisplayFor(model => model.Nom)</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            Prix d'achat
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixAchat) €
+        </dd>
+
+        <dt>
+            Prix de vente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixVente) €
+        </dd>
+        <dt>
+            Quantité en stock
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantite) 
+        </dd>
+        <dt>
+            Fournisseur
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FournisseurNom)
+        </dd>
+
+        <dt>
+            Catégorie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategorieNom)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>

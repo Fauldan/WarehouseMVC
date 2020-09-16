@@ -1,0 +1,89 @@
+﻿@model WarehouseMVC_DAL.Models.Reception
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Réception en attente de mise en stock</h2>
+
+    <hr />
+    <div class="jumbotron">
+        <dl class="dl-horizontal">
+            <dt>
+                Réception n°
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReceptionId)
+            </dd>
+
+            <dt>
+                Date de réception
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                Article n°
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ArticleId)
+            </dd>
+
+            <dt>
+                Article
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ArticleNom)
+            </dd>
+
+            <dt>
+                Quantité
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantite)
+            </dd>
+
+            <dt>
+                Fournisseur
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FournisseurNom)
+            </dd>
+
+            <dt>
+                Ville
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FournisseurVille)
+            </dd>
+
+            <dt>
+                Pays
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FournisseurPays)
+            </dd>
+
+            <dt>
+                Utilisateur
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UtilisateurNom)
+            </dd>
+        </dl>
+    </div>
+<p>
+    @Html.ActionLink("Confirmer la mise en stock", "ConfirmReception", new { id = Model.ReceptionId }) |
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ReceptionId }) |
+    @Html.ActionLink("Retour à la liste", "Index")
+</p>
