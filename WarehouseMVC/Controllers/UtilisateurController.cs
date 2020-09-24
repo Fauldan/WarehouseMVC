@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WarehouseMVC.Infrastructure.Atributes;
 using WarehouseMVC.Models.Forms;
 using WarehouseMVC_DAL.Models;
 using WarehouseMVC_DAL.Repositories;
@@ -14,11 +15,13 @@ namespace WarehouseMVC.Controllers
         private UtilisateurRepository _repo = new UtilisateurRepository();
 
         // GET: Utilisateur
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index()
         {
             return View(_repo.Get());
         }
 
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Detail(int id)
         {
             Utilisateur entity = _repo.Get(id);
@@ -26,6 +29,7 @@ namespace WarehouseMVC.Controllers
         }
 
         // GET: Utilisateur/Create
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
             return View();
@@ -48,6 +52,7 @@ namespace WarehouseMVC.Controllers
         }
 
         // GET: Utilisateur/Edit/5
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id)
         {
             return View();
@@ -70,6 +75,7 @@ namespace WarehouseMVC.Controllers
         }
 
         // GET: Utilisateur/Delete/5
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id)
         {
             return View();

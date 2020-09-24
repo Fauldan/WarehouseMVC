@@ -18,24 +18,24 @@ namespace WarehouseMVC_DAL.Repositories
             httpClient.BaseAddress = new Uri("http://localhost:56573/api/");
         }
 
-        public IEnumerable<Reception> Get()
+        public IEnumerable<Stock> Get()
         {
-            HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Stock").Result;
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Stock/Get").Result;
             httpResponseMessage.EnsureSuccessStatusCode();
 
             string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
-            return JsonConvert.DeserializeObject<Reception[]>(json);
+            return JsonConvert.DeserializeObject<Stock[]>(json);
         }
 
-        public Reception Get(int id)
+        public Stock Get(int id)
         {
             HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Stock/{id}").Result;
             httpResponseMessage.EnsureSuccessStatusCode();
 
             string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
-            return JsonConvert.DeserializeObject<Reception>(json);
+            return JsonConvert.DeserializeObject<Stock>(json);
         }
 
         public void Insert(Reception form)
@@ -50,18 +50,7 @@ namespace WarehouseMVC_DAL.Repositories
                 throw new HttpRequestException();
             }
         }
-        public void ConfirmReception(Reception form)
-        {
-            string body = JsonConvert.SerializeObject(form);
 
-            HttpContent content = new StringContent(body, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage message = httpClient.PostAsync("", content).Result;
-            if (!message.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException();
-            }
-        }
 
         public void Update(int id, Reception form)
         {
@@ -78,13 +67,50 @@ namespace WarehouseMVC_DAL.Repositories
 
         public void Delete(int id)
         {
-            HttpResponseMessage response = httpClient.DeleteAsync($"Activity/{id}").Result;
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Echec de la suppression des données.");
-            }
             return;
         }
 
+        public void ConfirmReception(ConfirmedReception form)
+        {
+            string body = JsonConvert.SerializeObject(form);
+
+            HttpContent content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage message = httpClient.PostAsync("Reception/ConfirmReception", content).Result;
+            if (!message.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException();
+            }
+        }
+        public void ConfirmExpedition(ConfirmedExpedition form)
+        {
+            string body = JsonConvert.SerializeObject(form);
+
+            HttpContent content = new StringContent(body, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage message = httpClient.PostAsync("Expedition/ConfirmExpedition", content).Result;
+            if (!message.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException();
+            }
+        }
+        public Stock GetStockArticle(int id)
+        {
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Stock/GetStockArticle/{id}").Result;
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Stock>(json);
+        }
+        public IEnumerable<Stock> GetMoveStock_By_ArticleId(int id)
+        {
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Stock/GetMoveStock_By_ArticleId/{id}").Result;
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Stock[]>(json);
+        }
     }
 }

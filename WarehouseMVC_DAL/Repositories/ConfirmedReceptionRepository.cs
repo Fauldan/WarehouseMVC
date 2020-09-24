@@ -11,21 +11,19 @@ namespace WarehouseMVC_DAL.Repositories
 {
     public class ConfirmedReceptionRepository
     {
-        private HttpClient httpClient;
-        public ConfirmedReceptionRepository()
-        {
-            httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:56573/api/");
-        }
-        public void ConfirmReception(ConfirmedReception form)
-        {
-            string body = JsonConvert.SerializeObject(form);
+        //private HttpClient httpClient;
+        //public ConfirmedReceptionRepository()
+        //{
+        //    httpClient = new HttpClient();
+        //    httpClient.BaseAddress = new Uri("http://localhost:56573/api/");
+        //}
+        //public void ConfirmReception(ConfirmedReception form)
+        //{
+        //    string body = JsonConvert.SerializeObject(form);
 
-            HttpContent content = new StringContent(body, Encoding.UTF8, "application/json");
+        //    HttpContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage message = httpClient.PostAsync("Reception/ConfirmReception", content).Result;
-             
-
-        }
+        //    HttpResponseMessage message = httpClient.PostAsync("Reception/ConfirmReception", content).Result;             
+        //}
     }
 }

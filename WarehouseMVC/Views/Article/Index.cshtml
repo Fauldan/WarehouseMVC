@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WarehouseMVC_DAL.Models.Article>
+@using WarehouseMVC.Infrastructure
 
 @{
     ViewBag.Title = "Index";
@@ -9,21 +10,18 @@
 <p>
     @Html.ActionLink("Ajouter un article", "Create")
 </p>
+
 <div class="jumbotron">
+    @DateTime.Now.ToString("dd/MM/yyyy")<br />
+    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantite)
-            </th>
-            <th>
-                Id Categorie
-            </th>
-
-            <th>
-                Id Fournisseur
+                @Html.DisplayNameFor(model => model.CategorieNom)
             </th>
 
             <th></th>
@@ -36,24 +34,18 @@
             @Html.DisplayFor(modelItem => item.Nom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Quantite)
+            @Html.DisplayFor(modelItem => item.CategorieNom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CategorieId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FournisseurId)
-        </td>
-
-        <td>
-            @Html.ActionLink("Modifier", "Edit", new { id = item.ArticleId }) |
-            @Html.ActionLink("Afficher les détails ", "Details", new { id = item.ArticleId }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id = item.ArticleId })
+            @Html.ActionLink("Fiche article", "Details", new { id = item.ArticleId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Créer une réception", "Create", "Reception", new { id = item.ArticleId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Modifier", "Edit", new { id = item.ArticleId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.ArticleId }, new { @class = "btn btn-default" })
         </td>
     </tr>
         }
     </table>
 </div>
 <div>
-    @Html.ActionLink("Retour à l'accueil", "Index", "Home")
+    @Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")
 </div>

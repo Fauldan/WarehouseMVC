@@ -32,7 +32,7 @@ namespace WarehouseMVC_DAL.Repositories
                 // GET(int id)
         public Fournisseur Get(int id)
         {
-            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Fournisseur//{id}").Result;
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Fournisseur/{id}").Result;
             httpResponseMessage.EnsureSuccessStatusCode();
 
             string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -40,7 +40,18 @@ namespace WarehouseMVC_DAL.Repositories
             return JsonConvert.DeserializeObject<Fournisseur>(json);
         }
 
-                // INSERT(Fournisseur form)
+        //        // GET(int articleId)
+        public IEnumerable<Fournisseur> GetByArticle(int id)
+        {
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Fournisseur/GetByArticle/{id}").Result;
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Fournisseur[]>(json);
+        }
+
+        // INSERT(Fournisseur form)
         public void Insert(Fournisseur form)
         {
             string body = JsonConvert.SerializeObject(form);
@@ -53,7 +64,7 @@ namespace WarehouseMVC_DAL.Repositories
                 throw new HttpRequestException();
             }
         }
-
+        
                 // UPDATE(int id, Fournisseur form)
         public void Update(int id, Fournisseur form)
         {

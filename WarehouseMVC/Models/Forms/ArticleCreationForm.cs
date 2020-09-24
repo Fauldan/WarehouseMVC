@@ -14,24 +14,22 @@ namespace WarehouseMVC.Models.Forms
         private FournisseurRepository _fournisseurRepo = new FournisseurRepository();
         private CategorieRepository _categorieRepo = new CategorieRepository();
         
-        [DisplayName("Nom de l'article :")]
+        [DisplayName("Nom de l'article")]
         [Required]
-        [MinLength(3)]
+        [StringLength(50, MinimumLength = 5)]
         public string Nom { get; set; }
 
-        [DisplayName("Prix d'achat :")]
+        [DisplayName("Prix d'achat")]
+        [Range(0, 10000)]
         [Required]
         public float PrixAchat { get; set; }
 
-        [DisplayName("Prix de vente :")]
+        [DisplayName("Prix de vente")]
+        [Range(0, 10000)]
         [Required]
         public float PrixVente { get; set; }
 
-        [DisplayName("Id Fournisseur :")]
-        [Required]
-        public int FournisseurId { get; set; }
-
-        [DisplayName("Id Catégorie :")]
+        [DisplayName("Catégorie")]
         [Required]
         public int CategorieId { get; set; }
 

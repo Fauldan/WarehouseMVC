@@ -35,6 +35,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,18 +46,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ArticleFull.cs" />
+    <Compile Include="Models\CategorieFournisseur.cs" />
+    <Compile Include="Models\ConfirmedExpedition.cs" />
     <Compile Include="Models\ConfirmedReception.cs" />
+    <Compile Include="Models\Expedition.cs" />
     <Compile Include="Models\Reception.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Fournisseur.cs" />
+    <Compile Include="Models\Stock.cs" />
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArticleRepository.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
+    <Compile Include="Repositories\CategorieFournisseurRepository.cs" />
     <Compile Include="Repositories\CategorieRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\ConfirmedReceptionRepository.cs" />
+    <Compile Include="Repositories\ExpeditionRepository.cs" />
     <Compile Include="Repositories\FournisseurRepository.cs" />
     <Compile Include="Repositories\ReceptionRepository.cs" />
     <Compile Include="Repositories\StockRepository.cs" />

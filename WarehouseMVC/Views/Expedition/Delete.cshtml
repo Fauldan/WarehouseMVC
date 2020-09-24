@@ -1,0 +1,168 @@
+﻿@model WarehouseMVC_DAL.Models.Expedition
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Expedition</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtilisateurId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtilisateurId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UtilisateurNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UtilisateurNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategorieNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategorieNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientNom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientNom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientPrenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientPrenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientNomSociete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientNomSociete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientNumTva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientNumTva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientRue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientRue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientNumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientNumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientCodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientCodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientVille)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientVille)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientPays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientPays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientNumTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientNumTel)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink(">>> Annuler <<<", "Index")
+        </div>
+    }
+</div>

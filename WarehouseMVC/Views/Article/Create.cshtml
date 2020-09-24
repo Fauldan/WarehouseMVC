@@ -1,4 +1,5 @@
 ﻿@model WarehouseMVC.Models.Forms.ArticleCreationForm
+@using WarehouseMVC.Infrastructure
 
 @{
     ViewBag.Title = "Create";
@@ -10,29 +11,38 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <hr />
     <div class="jumbotron">
         <div class="form-horizontal">
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-lg-offset-1">
+                    <b>@Html.DisplayNameFor(model => model.Nom)</b>
+                </div>
+                <div class="col-lg-offset-1">
                     @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.PrixAchat, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-lg-offset-1">
+                    <b>@Html.DisplayNameFor(model => model.PrixAchat)</b>
+                </div>
+                <div class="col-lg-offset-1">
                     @Html.EditorFor(model => model.PrixAchat, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PrixAchat, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.PrixVente, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-lg-offset-1">
+                    <b>@Html.DisplayNameFor(model => model.PrixVente)</b>
+                </div>
+                <div class="col-lg-offset-1">
                     @Html.EditorFor(model => model.PrixVente, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.PrixVente, "", new { @class = "text-danger" })
                 </div>
@@ -40,21 +50,11 @@
 
             <div class="form-group">
                 <div class="col-lg-offset-1">
-                    <b>Catégorie</b>
+                    <b>@Html.DisplayNameFor(model => model.CategorieId)</b>
                 </div>
                 <div class="col-lg-offset-1">
                     @Html.DropDownListFor(model => model.CategorieId, new List<SelectListItem>(Model.ListCategorie.Select(c => new SelectListItem() { Text = c.Nom, Value = c.CategorieId.ToString() })))
                     @Html.ValidationMessageFor(model => model.CategorieId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-lg-offset-1">
-                    <b>Fournisseur</b>
-                </div>
-                <div class="col-lg-offset-1">
-                    @Html.DropDownListFor(model => model.FournisseurId, new List<SelectListItem>(Model.ListFournisseur.Select(f => new SelectListItem() { Text = f.Nom, Value = f.FournisseurId.ToString() })))
-                    @Html.ValidationMessageFor(model => model.FournisseurId, "", new { @class = "text-danger" })
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 ﻿@model WarehouseMVC_DAL.Models.Article
+@using WarehouseMVC.Infrastructure
 
 @{
     ViewBag.Title = "Delete";
@@ -6,26 +7,15 @@
 
 <h2>Supprimer l'article</h2>
 
-
-<div>
     <hr />
     <div class="jumbotron">
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        <div class="col-lg-offset-1">
+            <h3>@Html.DisplayFor(model => model.Nom)</h3>
+        </div>
+        <hr />
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nom)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Nom)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Quantite)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Quantite)
-            </dd>
         </dl>
 
         @using (Html.BeginForm())
@@ -35,8 +25,8 @@
             <div class="form-actions no-color">
                 <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
             </div>
-            <br/>
-            @Html.ActionLink("Annuler", "Index")
+            <br />
+
         }
     </div>
-</div>
+    @Html.ActionLink(">>> Annuler <<<", "Index")

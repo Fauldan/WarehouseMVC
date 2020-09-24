@@ -31,7 +31,7 @@ namespace WarehouseMVC_DAL.Repositories
                 // GET(int id)
         public Client Get(int id)
         {
-            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Client//{id}").Result;
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Client/{id}").Result;
             httpResponseMessage.EnsureSuccessStatusCode();
 
             string json = httpResponseMessage.Content.ReadAsStringAsync().Result;

@@ -19,8 +19,8 @@
             @Html.DisplayFor(model => model.Nom)
         </dd>
     </dl>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.CategorieId }, new { @class = "btn btn-default" })
 </div>
 <p>
-    @Html.ActionLink("Modifier", "Edit", new { id = Model.CategorieId }) |
-    @Html.ActionLink("Retour à la liste", "Index")
+    @Html.ActionLink("<<< Retour à la liste", "Index")
 </p>

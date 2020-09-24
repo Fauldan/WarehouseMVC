@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.ActionLink("Modifier", "Edit", new { id=item.UtilisateurId }) |
-            @Html.ActionLink("Afficher les détails ", "Detail", new { id=item.UtilisateurId }) |
-            @Html.ActionLink("Supprimer", "Delete", new { id=item.UtilisateurId })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.UtilisateurId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Afficher les détails ", "Detail", new { id=item.UtilisateurId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.UtilisateurId }, new { @class = "btn btn-default" })
         </td>
     </tr>
 }
