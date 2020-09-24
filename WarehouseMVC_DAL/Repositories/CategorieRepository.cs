@@ -40,6 +40,28 @@ namespace WarehouseMVC_DAL.Repositories
             return JsonConvert.DeserializeObject<Categorie>(json);
         }
 
+        // GET(int id)
+        public IEnumerable<Categorie> GetCategorie_NotIn_Fournisseur(int id)
+        {
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Categorie/GetCategorie_NotIn_Fournisseur/{id}").Result;
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Categorie[]>(json);
+        }
+
+        // GET(int id)
+        public IEnumerable<Categorie> GetCategorie_By_Fournisseur(int id)
+        {
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync($"Categorie/GetCategorie_By_Fournisseur/{id}").Result;
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Categorie[]>(json);
+        }
+
         // INSERT(Categorie form)
         public void Insert(Categorie form)
         {

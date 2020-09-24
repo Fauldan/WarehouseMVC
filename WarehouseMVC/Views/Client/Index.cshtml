@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WarehouseMVC_DAL.Models.Client>
+@using WarehouseMVC.Infrastructure
 
 @{
     ViewBag.Title = "Index";
@@ -10,13 +11,13 @@
     @Html.ActionLink("Ajouter un client", "Create")
 </p>
 <div class="jumbotron">
+    @DateTime.Now.ToString("dd/MM/yyyy")<br />
+    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+    <br />
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prenom)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NomSociete)
@@ -30,10 +31,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prenom)
+                    @Html.DisplayFor(modelItem => item.Nom) @Html.DisplayFor(modelItem => item.Prenom)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NomSociete)
@@ -42,14 +40,14 @@
                     @Html.DisplayFor(modelItem => item.Ville)
                 </td>
                 <td>
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.ClientId }) |
-                    @Html.ActionLink("Afficher les détails ", "Details", new { id = item.ClientId }) |
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ClientId })
+                    @Html.ActionLink("Fiche client", "Details", new { id = item.ClientId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ClientId }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ClientId }, new { @class = "btn btn-default" })
                 </td>
             </tr>
         }
     </table>
 </div>
 <div>
-    @Html.ActionLink("Retour à l'accueil", "Index", "Home")
+    @Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")
 </div>

@@ -1,0 +1,96 @@
+﻿@model PagedList.IPagedList<WarehouseMVC_DAL.Models.Stock>
+@using PagedList.Mvc;
+@using WarehouseMVC.Infrastructure
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mouvements de stock</h2>
+
+<div class="jumbotron">
+    @DateTime.Now.ToString("dd/MM/yyyy")<br />
+    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+    <table class="table">
+        <tr>
+            <th>
+                N°
+            </th>
+
+            <th>
+                Date
+            </th>
+
+            <th>
+                Activite
+            </th>
+
+            <th>
+                N° Article
+            </th>
+
+            <th>
+                Article
+            </th>
+
+            <th>
+                Quantite
+            </th>
+
+            <th>
+                Stock
+            </th>
+
+            <th>
+                Utilisateur
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.StockId)
+                </td>
+
+                <td>
+                    @item.Date.ToString("dd/MM/yyyy")
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activite)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleNom)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantite)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalStock)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UtilisateurNom)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Voir le détail", "Details", new { id = item.StockId }, new { @class = "btn btn-default" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

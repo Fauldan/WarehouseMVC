@@ -1,4 +1,5 @@
 ﻿@model WarehouseMVC_DAL.Models.Reception
+@using WarehouseMVC.Infrastructure
 
 @{
     ViewBag.Title = "Edit";
@@ -11,6 +12,8 @@
     @Html.AntiForgeryToken()
 
     <div class="jumbotron">
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
         <div class="form-horizontal">
             <h4></h4>
             <hr />
@@ -32,13 +35,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-lg-offset-1"><b>Utilisateur</b></div>
-                <div class="col-lg-offset-1">
-                    @Html.DropDownListFor(model => model.UtilisateurId, new List<SelectListItem>(Model.ListUtilisateur.Select(c => new SelectListItem() { Text = c.Nom, Value = c.UtilisateurId.ToString() })))
-                    @Html.ValidationMessageFor(model => model.UtilisateurId, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
             <div class="form-group">
                 <div class="col-lg-offset-1">
@@ -58,5 +54,5 @@
 }
 
 <div>
-    @Html.ActionLink("Annuler", "Index")
+    @Html.ActionLink(">>> Annuler <<<", "Index")
 </div>

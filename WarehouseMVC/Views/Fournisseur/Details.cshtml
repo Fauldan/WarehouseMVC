@@ -60,9 +60,22 @@
         <dd>
             @Html.DisplayFor(model => model.Pays)
         </dd>
+        <br />
+        <dt>
+            Catégories
+        </dt>
+        <dd>
+            @foreach (var element in Model.ListCategorie)
+            {
+                @Html.DisplayFor(m => element.Nom)
+                <br />
+            }
+        </dd>
     </dl>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Ajouter une catégorie", "AjoutCategorieFournisseur", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
 </div>
 <p>
-    @Html.ActionLink("Retour à la liste", "Index")
+    @Html.ActionLink("<<< Retour à la liste", "Index")
 </p>
 

@@ -28,7 +28,7 @@
                     <li>@Html.ActionLink("Fournisseurs", "Index", "Fournisseur") </li>
                     <li>@Html.ActionLink("Clients", "Index", "Client") </li>
                     <li>@Html.ActionLink("Catégories", "Index", "Categorie")</li>
-                    @*<li>@Html.ActionLink("Secret", "Secret", "Article")</li>*@
+                    <li>@Html.ActionLink("Secret", "Secret", "Article")</li>
                     @if (SessionManager.Utilisateur is null)
                     {
                         <li>@Html.ActionLink("Créer un compte", "Register", "Auth")</li>

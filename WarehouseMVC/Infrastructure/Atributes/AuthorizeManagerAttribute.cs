@@ -27,7 +27,7 @@ namespace WarehouseMVC.Infrastructure.Atributes
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary()
                     {
-                        {"action", "login" },
+                        {"action", "Login" },
                         {"controller", "Auth"}
                     });
             }

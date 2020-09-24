@@ -10,5 +10,6 @@ namespace WarehouseMVC_DAL.Models
     {
         public int CategorieId { get; set; }
         public string Nom { get; set; }
+
     }
 }

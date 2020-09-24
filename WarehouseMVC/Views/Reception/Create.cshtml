@@ -1,4 +1,5 @@
 ﻿@model WarehouseMVC.Models.Forms.ReceptionCreationForm
+@using WarehouseMVC.Infrastructure
 
 @{
     ViewBag.Title = "Create";
@@ -11,24 +12,16 @@
     @Html.AntiForgeryToken()
     <div class="jumbotron">
         <div class="form-horizontal">
-            <hr />
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group">
                 <div class="col-lg-offset-1">
-                    <b>Article</b>
+                    <h3><b>@Model.ArticleNom</b></h3>
                 </div>
                 <div class="col-lg-offset-1">
-                    @Html.DropDownListFor(model => model.ArticleId, new List<SelectListItem>(Model.ListArticle.Select(a => new SelectListItem() { Text = a.Nom, Value = a.ArticleId.ToString() })))
-                    @Html.ValidationMessageFor(model => model.ArticleId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-lg-offset-1"><b>Catégorie</b></div>
-                <div class="col-lg-offset-1">
-                    @Html.DropDownListFor(model => model.CategorieId, new List<SelectListItem>(Model.ListCategorie.Select(c => new SelectListItem() { Text = c.Nom, Value = c.CategorieId.ToString() })))
-                    @Html.ValidationMessageFor(model => model.CategorieId, "", new { @class = "text-danger" })
+                    <b>@Model.CategorieNom</b>
                 </div>
             </div>
 
@@ -49,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class="col-md-offset-1 col-md-10">
                     <input type="submit" value="Confirmer la création" class="btn btn-default" />
                 </div>
             </div>
@@ -58,7 +51,7 @@
 }
 
 <div>
-    @Html.ActionLink("Retour à la liste", "Index")
+    @Html.ActionLink(">>> Annuler <<<", "Index", "Article")
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

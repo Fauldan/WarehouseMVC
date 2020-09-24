@@ -92,3 +92,7 @@ C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\System.Web.Http.WebHos
 C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\System.Net.Http.Formatting.xml
 C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\System.Web.Http.xml
 C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\System.Web.Http.WebHost.xml
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\PagedList.dll
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\PagedList.Mvc.dll
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\PagedList.xml
+C:\Users\cpiet\source\repos\WarehouseMVC\WarehouseMVC\bin\PagedList.Mvc.xml

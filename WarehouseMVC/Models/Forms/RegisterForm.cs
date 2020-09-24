@@ -33,7 +33,37 @@ namespace WarehouseMVC.Models.Forms
         [DisplayName("Email :")]
         [Required]
         [EmailAddress]
-        public int Email { get; set; }
+        public string Email { get; set; }
+        
+        [DisplayName("Téléphone :")]
+        [Required]
+        [MinLength(3)]
+        public string NumTel { get; set; }
+        
+        [DisplayName("Rue :")]
+        [Required]
+        [MinLength(3)]
+        public string Rue { get; set; }
+        
+        [DisplayName("Numero :")]
+        [Required]
+        [MinLength(3)]
+        public int Numero { get; set; }
+        
+        [DisplayName("Code Postal :")]
+        [Required]
+        [MinLength(3)]
+        public int CodePostal { get; set; }
+        
+        [DisplayName("Ville :")]
+        [Required]
+        [MinLength(3)]
+        public string Ville { get; set; }
+        
+        [DisplayName("Pays :")]
+        [Required]
+        [MinLength(3)]
+        public string Pays { get; set; }
 
     }
 }
