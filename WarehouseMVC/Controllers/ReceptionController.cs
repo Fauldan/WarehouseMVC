@@ -17,7 +17,7 @@ namespace WarehouseMVC.Controllers
         private StockRepository _repoConfirmed = new StockRepository();
         private ArticleRepository _repoArticle = new ArticleRepository();
 
-        // GET: Reception
+        // GET: Reception ------------------------------------------------------------------- Liste des réceptions
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index()
         {
@@ -31,7 +31,7 @@ namespace WarehouseMVC.Controllers
             //return RedirectToAction("Index", "Home");
         }
 
-        // GET: Reception/Details/5
+        // GET: Reception/Details/5 ------------------------------------------------- Détail de la réception
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -39,7 +39,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Reception/Create
+        // GET: Reception/Create ---------------------------------------------------- Créer une nouvelle reception - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create(int id)
         {
@@ -52,7 +52,7 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Reception/Create
+        // POST: Reception/Create ---------------------------------------------------- Créer une nouvelle reception - envoi du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         [HttpPost]
         public ActionResult Create(int id, Reception form)
@@ -66,7 +66,43 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: Reception/ConfirmReception
+        // GET: Reception/Edit/5 ---------------------------------------------------- Modifier une reception - Get du client et appel du formulaire
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
+        public ActionResult Edit(int id)
+        {
+            Reception entity = _repo.Get(id);
+            return View(entity);
+        }
+
+        // POST: Reception/Edit/5 ---------------------------------------------------- Modifier une reception - envoi du formulaire
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
+        [HttpPost]
+        public ActionResult Edit(int id, Reception form)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.Update(id, form);
+            }
+            return RedirectToAction("Index");
+        }
+
+        // GET: Reception/Delete/5 -------------------------------------------------- Supprimer une reception - Get de la reception
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
+        public ActionResult Delete(int id)
+        {
+            Reception entity = _repo.Get(id);
+            return View(entity);
+        }
+
+        // POST: Reception/Delete/5 -------------------------------------------------- Supprimer une reception - Confirmation de suppression
+        [HttpPost]
+        public ActionResult Delete(int id, Reception entity)
+        {
+            _repo.Delete(id);
+            return RedirectToAction("Index");
+        }
+
+        // POST: Reception/ConfirmReception ------------------------------------------ Confirmer une reception - Get de la reception et appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         [HttpGet]
         public ActionResult ConfirmReception(int id)
@@ -75,7 +111,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Reception/ConfirmReception
+        // POST: Reception/ConfirmReception ----------------------------------------- Confirmer une reception - Get de la reception et envoi du formulaire
         [HttpPost]
         public ActionResult ConfirmReception(int id, ConfirmedReception form)
         {
@@ -95,42 +131,6 @@ namespace WarehouseMVC.Controllers
                 form.ReceptionId = entity.ReceptionId;
                 _repoConfirmed.ConfirmReception(form);
             }
-            return RedirectToAction("Index");
-        }
-
-        // GET: Reception/Edit/5
-        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
-        public ActionResult Edit(int id)
-        {
-            Reception entity = _repo.Get(id);
-            return View(entity);
-        }
-
-        // POST: Reception/Edit/5
-        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
-        [HttpPost]
-        public ActionResult Edit(int id, Reception form)
-        {
-            if (ModelState.IsValid)
-            {
-                _repo.Update(id, form);
-            }
-            return RedirectToAction("Index");
-        }
-
-        // GET: Reception/Delete/5
-        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
-        public ActionResult Delete(int id)
-        {
-            Reception entity = _repo.Get(id);
-            return View(entity);
-        }
-
-        // POST: Reception/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, Reception entity)
-        {
-            _repo.Delete(id);
             return RedirectToAction("Index");
         }
     }

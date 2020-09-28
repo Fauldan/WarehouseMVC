@@ -13,14 +13,15 @@ namespace WarehouseMVC.Controllers
     public class ClientController : Controller
     {
         ClientRepository _repo = new ClientRepository();
-        // GET: Client
+
+        // GET: Client ------------------------------------------------------------------- Liste des clients
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index()
         {
             return View(_repo.Get());
         }
 
-        // GET: Client/Details/5
+        // GET: Client/Details/5 ------------------------------------------------- Détail du client
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -28,7 +29,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Client/Create
+        // GET: Client/Create ---------------------------------------------------- Créer un nouveau client - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
@@ -36,7 +37,7 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Client/Create
+        // POST: Client/Create ---------------------------------------------------- Créer un nouveau client - envoi du formulaire
         [HttpPost]
         public ActionResult Create(Client form)
         {
@@ -47,7 +48,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Client/Edit/5
+        // GET: Client/Edit/5 ---------------------------------------------------- Modifier un client - Get du client et appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         [HttpGet]
         public ActionResult Edit(int id)
@@ -57,7 +58,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Client/Edit/5
+        // POST: Client/Edit/5 ---------------------------------------------------- Modifier un client - envoi du formulaire
         [HttpPost]
         public ActionResult Edit(int clientId, Client form)
         {
@@ -68,7 +69,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Client/Delete/5
+        // GET: Client/Delete/5 -------------------------------------------------- Supprimer un client - Get du client
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         [HttpGet]
         public ActionResult Delete(int id)
@@ -77,7 +78,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Client/Delete/5
+        // POST: Client/Delete/5 ------------------------------------------------- Supprimer un client - Confirmation de suppression
         public ActionResult Delete(int id, Client entity)
         {
             _repo.Delete(id);
