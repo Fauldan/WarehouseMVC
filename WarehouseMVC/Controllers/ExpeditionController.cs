@@ -16,14 +16,14 @@ namespace WarehouseMVC.Controllers
         private ExpeditionRepository _repo = new ExpeditionRepository();
         private StockRepository _repoConfirmed = new StockRepository();
 
-        // GET: Expedition
+        // GET: Expedition ------------------------------------------------------------------- Liste des expeditions
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index()
         {
             return View(_repo.Get());
         }
 
-        // GET: Expedition/Details/5
+        // GET: Expedition/Details/5 ------------------------------------------------- Détail de l'expedition
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -31,7 +31,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Expedition/Create
+        // GET: Expedition/Create ---------------------------------------------------- Créer une nouvelle expedition - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
@@ -39,7 +39,7 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Expedition/Create
+        // POST: Expedition/Create ---------------------------------------------------- Créer une nouvelle expedition - envoi du formulaire
         [HttpPost]
         public ActionResult Create(Expedition form)
         {
@@ -51,7 +51,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Expedition/Edit/5
+        // GET: Expedition/Edit/5 ---------------------------------------------------- Modifier une expedition - Get du client et appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id)
         {
@@ -59,7 +59,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Expedition/Edit/5
+        // POST: Expedition/Edit/5 ---------------------------------------------------- Modifier une expedition - envoi du formulaire
         [HttpPost]
         public ActionResult Edit(int id, Expedition form)
         {
@@ -70,7 +70,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Expedition/Delete/5
+        // GET: Expedition/Delete/5 -------------------------------------------------- Supprimer une expedition - Get de l'expedition
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id)
         {
@@ -78,7 +78,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Expedition/Delete/5
+        // POST: Expedition/Delete/5 -------------------------------------------------- Supprimer une expedition - Confirmation de suppression
         [HttpPost]
         public ActionResult Delete(int id, Expedition entity)
         {
@@ -86,7 +86,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Expedition/ConfirmReception
+        // GET: Expedition/ConfirmExpedition ------------------------------------------ Confirmer une expedition - Get de l'expedition et appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         [HttpGet]
         public ActionResult ConfirmExpedition(int id)
@@ -95,7 +95,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Expedition/ConfirmExpedition
+        // POST: Expedition/ConfirmExpedition ----------------------------------------- Confirmer une expedition - Get de l'expedition et envoi du formulaire
         [HttpPost]
         public ActionResult ConfirmExpedition(int id, ConfirmedExpedition form)
         {

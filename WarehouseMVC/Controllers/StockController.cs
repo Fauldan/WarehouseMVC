@@ -16,7 +16,7 @@ namespace WarehouseMVC.Controllers
         private ArticleRepository _repoArticle = new ArticleRepository();
         private StockRepository _repo = new StockRepository();
 
-        // GET: Stock
+        // GET: Stock --------------------------------------------------------------------------------- Liste des lignes de stock
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -36,19 +36,21 @@ namespace WarehouseMVC.Controllers
             return View(_repo.Get().ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Stock/Details/5
+        // GET: Stock/Details/5 ----------------------------------------------------------------------- Détail d'une ligne de stock - NOT IMPLEMENTED YET
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        // GET: Stock/GetStockArticle/5 --------------------------------------------------------------- Récupérer le stock total d'un article - Get de l'article
         public ActionResult GetStockArticle(int id)
         {
             Stock entity = _repo.GetStockArticle(id);
             return View(entity);
         }
-        
+
+        //  -------------------------------------------------------------------------------------------- Liste des lignes de stock pour un article
         public ActionResult GetMoveStock_By_ArticleId(int id, string sortOrder, string currentFilter, string searchString, int? page)
         {
             Article entity = _repoArticle.Get(id);
@@ -70,6 +72,20 @@ namespace WarehouseMVC.Controllers
             return View(_repo.GetMoveStock_By_ArticleId(id).ToPagedList(pageNumber, pageSize));
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // --------------------------------------------------- part of the CRUD not in use ---------------------------------------------
+        
         // GET: Stock/Create
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()

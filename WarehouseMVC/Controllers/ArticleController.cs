@@ -15,14 +15,14 @@ namespace WarehouseMVC.Controllers
         private ArticleRepository _repo = new ArticleRepository();
         private StockRepository _repoStock = new StockRepository();
 
-        // GET: Article
+        // GET: ------------------------------------------------------------------- Liste des articles
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index()
         {
             return View(_repo.Get());
         }
 
-        // GET: Article/Details/5
+        // GET: Article/Details/5 ------------------------------------------------- Détail de l'article
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -34,7 +34,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Article/Create
+        // GET: Article/Create ---------------------------------------------------- Créer un nouvel article - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
@@ -42,7 +42,7 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Article/Create
+        // POST: Article/Create --------------------------------------------------- Créer un nouvel article - envoi du formulaire       
         [HttpPost]
         public ActionResult Create(Article form)
         {
@@ -53,7 +53,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Article/Edit/5
+        // GET: Article/Edit/5 ---------------------------------------------------- Modifier un article - Get de l'article et appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id)
         {
@@ -62,7 +62,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Article/Edit/5
+        // POST: Article/Edit/5 --------------------------------------------------- Modifier un article - envoi du formulaire
         [HttpPost]
         public ActionResult Edit(int id, Article form)
         {
@@ -73,7 +73,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Article/Delete/5
+        // GET: Article/Delete/5 -------------------------------------------------- Supprimer un article - Get de l'article
         [HttpGet]
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id)
@@ -82,7 +82,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Article/Delete/5
+        // POST: Article/Delete/5 ------------------------------------------------- Supprimer un article - Confirmation de suppression
         public ActionResult Delete(int id, Article entity)
         {
             _repo.Delete(id);
@@ -90,10 +90,12 @@ namespace WarehouseMVC.Controllers
         }
 
 
-        [AuthorizeManager(UtilisateurRole.ADMIN)]
-        public ActionResult Secret()
-        {
-            return View();
-        }
+        // Zone ADMIN en Test  
+
+        //[AuthorizeManager(UtilisateurRole.ADMIN)]
+        //public ActionResult Secret()
+        //{
+        //    return View();
+        //}
     }
 }

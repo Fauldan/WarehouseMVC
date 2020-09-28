@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\ArticleFull.cs" />
     <Compile Include="Models\CategorieFournisseur.cs" />
     <Compile Include="Models\ConfirmedExpedition.cs" />
     <Compile Include="Models\ConfirmedReception.cs" />

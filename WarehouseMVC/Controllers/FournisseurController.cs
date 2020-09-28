@@ -15,14 +15,14 @@ namespace WarehouseMVC.Controllers
         FournisseurRepository _repo = new FournisseurRepository();
         CategorieFournisseurRepository _repoCategorieFournisseur = new CategorieFournisseurRepository();
 
-        // GET: Fournisseur
+        // GET: ----------------------------------------------------------------------- Listes des fournisseurs
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Index()
         {
             return View(_repo.Get());
         }
 
-        // GET: Fournisseur/Details/5
+        // GET: Fournisseur/Details/5 ------------------------------------------------- Détail du fournisseur
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -31,7 +31,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Fournisseur/Create
+        // GET: Fournisseur/Create ---------------------------------------------------- Créer un nouveau fournisseur - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
@@ -39,7 +39,7 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Fournisseur/Create
+        // POST: Fournisseur/Create --------------------------------------------------- Créer un nouveau fournisseur - envoi du formulaire  
         [HttpPost]
         public ActionResult Create(Fournisseur form)
         {
@@ -50,7 +50,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fournisseur/AjoutCategorieFournisseur
+        // GET: Fournisseur/AjoutCategorieFournisseur --------------------------------- Ajouter une catégorie au fournisseur - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult AjoutCategorieFournisseur(int id)
         {
@@ -62,7 +62,7 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Fournisseur/AjoutCategorieFournisseur
+        // POST: Fournisseur/AjoutCategorieFournisseur -------------------------------- Ajouter une catégorie au fournisseur - envoi du formulaire
         [HttpPost]
         public ActionResult AjoutCategorieFournisseur(CategorieFournisseur form)
         {
@@ -73,7 +73,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fournisseur/Edit/5
+        // GET: Fournisseur/Edit/5 ---------------------------------------------------- Modifier un fournisseur     - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id)
         {
@@ -82,7 +82,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Fournisseur/Edit/5
+        // POST: Fournisseur/Edit/5 ---------------------------------------------------- Modifier un fournisseur    - envoi du formulaire
         [HttpPost]
         public ActionResult Edit(int id, Fournisseur form)
         {
@@ -93,7 +93,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fournisseur/Delete/5
+        // GET: Fournisseur/Delete/5 -------------------------------------------------- Supprimer un Fournisseur - appel du formulaire
         [HttpGet]
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id)
@@ -102,7 +102,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Founrisseur/Delete/5
+        // POST: Founrisseur/Delete/5 -------------------------------------------------- Supprimer un Fournisseur - confirmation de suppression
         public ActionResult Delete(int id, Fournisseur entity)
         {
             _repo.Delete(id);
