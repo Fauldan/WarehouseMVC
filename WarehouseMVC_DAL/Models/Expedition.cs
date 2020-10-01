@@ -5,17 +5,22 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseMVC_DAL.Repositories;
 
 namespace WarehouseMVC_DAL.Models
 {
     public class Expedition
     {
 
+        private ArticleRepository _articleRepo = new ArticleRepository();
+        private CategorieRepository _categorieRepo = new CategorieRepository();
+        private ClientRepository _clientRepo = new ClientRepository();
+
         [DisplayName("N°")] 
         public int ExpeditionId { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [DisplayName("Quantité")]
@@ -72,5 +77,9 @@ namespace WarehouseMVC_DAL.Models
 
         [DisplayName("Téléphone")]
         public string ClientNumTel { get; set; }
+
+        public IEnumerable<Article> ListArticle { get => _articleRepo.Get(); }
+        public IEnumerable<Categorie> ListCategorie { get => _categorieRepo.Get(); }
+        public IEnumerable<Client> ListClient { get => _clientRepo.Get(); }
     }
 }

@@ -11,8 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <hr />
-    <div class="jumbotron">
+
         <div class="form-horizontal">
             @DateTime.Now.ToString("dd/MM/yyyy")<br />
             @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
@@ -68,14 +67,12 @@
                 </div>
             </div>
         </div>
-    </div>
-
 }
 
 <div>
-    @Html.ActionLink("Annuler", "Index")
+    <b>@Html.ActionLink("Annuler", "Index")</b>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

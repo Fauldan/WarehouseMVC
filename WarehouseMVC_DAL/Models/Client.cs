@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,9 @@ namespace WarehouseMVC_DAL.Models
 {
     public class Client
     {
+        [DisplayName("N°")]
         public int ClientId { get; set; }
+
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string NomSociete { get; set; }

@@ -5709,7 +5709,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
         .navbar-inverse .navbar-brand:hover,
         .navbar-inverse .navbar-brand:focus {
-            color: #fff;
+            color: #ccc;
             background-color: transparent;
         }
 
@@ -6139,13 +6139,6 @@ a.badge:focus {
     margin-left: 3px;
 }
 
-.jumbotron {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-    color: inherit;
-    background-color: #eeeeee;
-}
 
     .jumbotron h1,
     .jumbotron .h1 {

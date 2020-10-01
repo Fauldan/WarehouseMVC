@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,14 +16,54 @@ namespace WarehouseMVC.Controllers
         FournisseurRepository _repo = new FournisseurRepository();
         CategorieFournisseurRepository _repoCategorieFournisseur = new CategorieFournisseurRepository();
 
-        // GET: Fournisseur
+        // GET: ----------------------------------------------------------------------- Listes des fournisseurs
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(_repo.Get());
-        }
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "fournisseurId_desc" : "";
+            ViewBag.NomSortParm = sortOrder == "Nom" ? "nom_desc" : "Nom";
+            ViewBag.VilleSortParm = sortOrder == "Ville" ? "ville_desc" : "Ville";
 
-        // GET: Fournisseur/Details/5
+            ViewBag.CurrentSort = sortOrder;
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            ViewBag.CurrentFilter = searchString;
+
+            IEnumerable<Fournisseur> listfournisseur = _repo.Get();
+            switch (sortOrder)
+            {
+                case "fournisseurId_desc":
+                    listfournisseur = listfournisseur.OrderByDescending(s => s.FournisseurId);
+                    break;
+                case "Nom":
+                    listfournisseur = listfournisseur.OrderBy(s => s.Nom);
+                    break;
+                case "nom_desc":
+                    listfournisseur = listfournisseur.OrderByDescending(s => s.Nom);
+                    break;
+                case "Ville":
+                    listfournisseur = listfournisseur.OrderBy(s => s.Ville);
+                    break;
+                case "ville_desc":
+                    listfournisseur = listfournisseur.OrderByDescending(s => s.Ville);
+                    break;
+                default:
+                    listfournisseur = listfournisseur.OrderBy(s => s.FournisseurId);
+                    break;
+            }
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(listfournisseur.ToPagedList(pageNumber, pageSize));
+        }
+        // GET: Fournisseur/Details/5 ------------------------------------------------- Détail du fournisseur
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -31,7 +72,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Fournisseur/Create
+        // GET: Fournisseur/Create ---------------------------------------------------- Créer un nouveau fournisseur - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
@@ -39,8 +80,9 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Fournisseur/Create
+        // POST: Fournisseur/Create --------------------------------------------------- Créer un nouveau fournisseur - envoi du formulaire  
         [HttpPost]
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create(Fournisseur form)
         {
             if (ModelState.IsValid)
@@ -50,7 +92,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fournisseur/AjoutCategorieFournisseur
+        // GET: Fournisseur/AjoutCategorieFournisseur --------------------------------- Ajouter une catégorie au fournisseur - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult AjoutCategorieFournisseur(int id)
         {
@@ -62,8 +104,9 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Fournisseur/AjoutCategorieFournisseur
+        // POST: Fournisseur/AjoutCategorieFournisseur -------------------------------- Ajouter une catégorie au fournisseur - envoi du formulaire
         [HttpPost]
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult AjoutCategorieFournisseur(CategorieFournisseur form)
         {
             if (ModelState.IsValid)
@@ -73,7 +116,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fournisseur/Edit/5
+        // GET: Fournisseur/Edit/5 ---------------------------------------------------- Modifier un fournisseur     - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id)
         {
@@ -82,8 +125,9 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Fournisseur/Edit/5
+        // POST: Fournisseur/Edit/5 ---------------------------------------------------- Modifier un fournisseur    - envoi du formulaire
         [HttpPost]
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id, Fournisseur form)
         {
             if (ModelState.IsValid)
@@ -93,7 +137,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Fournisseur/Delete/5
+        // GET: Fournisseur/Delete/5 -------------------------------------------------- Supprimer un Fournisseur - appel du formulaire
         [HttpGet]
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id)
@@ -102,7 +146,8 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Founrisseur/Delete/5
+        // POST: Founrisseur/Delete/5 -------------------------------------------------- Supprimer un Fournisseur - confirmation de suppression
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id, Fournisseur entity)
         {
             _repo.Delete(id);

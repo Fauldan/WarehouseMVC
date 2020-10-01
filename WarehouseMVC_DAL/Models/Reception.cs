@@ -70,7 +70,7 @@ namespace WarehouseMVC_DAL.Models
         public int Quantite { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public IEnumerable<Article> ListArticle { get => _articleRepo.Get(); }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,10 @@ namespace WarehouseMVC_DAL.Models
     public class Fournisseur
     {
         private CategorieRepository _categorieRepo = new CategorieRepository();
+
+        [DisplayName("N°")]
         public int FournisseurId { get; set; }
+
         public string Nom { get; set; }
         public int NumTva { get; set; }
         public string Email { get; set; }

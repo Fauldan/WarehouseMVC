@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
     <div class="form-horizontal">
@@ -110,9 +110,9 @@
             </div>
         </div>
     </div>
-</div>
+
 }
 
 <div>
-    @Html.ActionLink(">>> Annuler <<<", "Index")
+    <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
 </div>

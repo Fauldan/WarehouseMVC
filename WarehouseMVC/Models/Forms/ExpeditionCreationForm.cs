@@ -38,6 +38,9 @@ namespace WarehouseMVC.Models.Forms
         [Required]
         public int UtilisateurId { get; set; }
 
+        public string ArticleNom { get; set; }
+        public string CategorieNom { get; set; }
+
         public IEnumerable<Article> ListArticle { get => _articleRepo.Get(); }
         public IEnumerable<Categorie> ListCategorie { get => _categorieRepo.Get(); }
         public IEnumerable<Utilisateur> ListUtilisateur { get => _utilisateurRepo.Get(); }

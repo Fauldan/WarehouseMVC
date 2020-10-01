@@ -1,5 +1,6 @@
-﻿@model IEnumerable<WarehouseMVC_DAL.Models.Reception>
+﻿@model PagedList.IPagedList<WarehouseMVC_DAL.Models.Reception>
 @using WarehouseMVC.Infrastructure
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Index";
@@ -8,31 +9,31 @@
 <h2>Réceptions en attente de mise en stock</h2>
 
 <p>
-    @Html.ActionLink("Créer une nouvelle réception", "Index", "Article")
+    <b>@Html.ActionLink("Créer une nouvelle réception", "Index", "Article")</b>
 </p>
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
     <br />
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ReceptionId)
+                @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArticleNom)
+                @Html.ActionLink("Article", "Index", new { sortOrder = ViewBag.ArticleNomSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantite)
+                @Html.ActionLink("Quantité", "Index", new { sortOrder = ViewBag.QuantiteSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CategorieNom)
+                @Html.ActionLink("Catégorie", "Index", new { sortOrder = ViewBag.CategorieNomSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FournisseurNom)
+                @Html.ActionLink("Fournisseur", "Index", new { sortOrder = ViewBag.FournisseurNomSortParm })
             </th>
             <th></th>
         </tr>
@@ -65,9 +66,7 @@
                 </td>
             </tr>
         }
-
     </table>
-</div>
-<div>
-    @Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")
-</div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>

@@ -11,45 +11,48 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>@DateTime.Now.ToString("dd/MM/yyyy")</h4>
-        <h5>@SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom</h5>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-lg-offset-1">
-                <b>Article</b>
+        <div class="form-horizontal">
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-lg-offset-1">
+                    <h3><b>@Model.ArticleNom</b></h3>
+                </div>
+                <div class="col-lg-offset-1">
+                    <b>@Model.CategorieNom</b>
+                </div>
             </div>
-            <div class="col-lg-offset-1">
-                @Html.DropDownListFor(model => model.ArticleId, new List<SelectListItem>(Model.ListArticle.Select(a => new SelectListItem() { Text = a.Nom, Value = a.ArticleId.ToString() })))
-                @Html.ValidationMessageFor(model => model.ArticleId, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-lg-offset-1"><b>Client</b></div>
+                <div class="col-lg-offset-1">
+                    @Html.DropDownListFor(model => model.ClientId, new List<SelectListItem>(Model.ListClient.Select(f => new SelectListItem() { Text = f.Nom, Value = f.ClientId.ToString() })))
+                    @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-1">
+                    <b>Quantité à expédier</b>
+                    @Html.EditorFor(model => model.Quantite, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantite, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="submit" value="Confirmer la création" class="btn btn-default" />
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-lg-offset-1"><b>Client</b></div>
-            <div class="col-lg-offset-1">
-                @Html.DropDownListFor(model => model.ClientId, new List<SelectListItem>(Model.ListClient.Select(f => new SelectListItem() { Text = f.Nom, Value = f.ClientId.ToString() })))
-                @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1">
-                <b>Quantité expédition</b>
-                @Html.EditorFor(model => model.Quantite, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quantite, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-1 col-md-10">
-                <input type="submit" value="Confirmer la création" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
 }
 
 <div>
-    @Html.ActionLink(">>> Annuler <<<", "Index")
+    <b>@Html.ActionLink(">>> Annuler <<<", "Index", "Article")</b>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

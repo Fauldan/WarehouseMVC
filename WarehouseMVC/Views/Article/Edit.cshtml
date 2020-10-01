@@ -10,16 +10,14 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <hr />
-    <div class="jumbotron">
+
         @DateTime.Now.ToString("dd/MM/yyyy")<br />
         @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-        <hr />
-        <h3>Article n° @Html.DisplayFor(model => model.ArticleId)</h3>
+    
+        <h3>Article n° @Html.DisplayFor(model => model.ArticleId) - @Html.DisplayFor(model => model.Nom)</h3>
         <div class="form-horizontal">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
             <div class="form-group">
                 <div class="col-lg-offset-1">
                     <b>@Html.DisplayNameFor(model => model.Nom)</b>
@@ -66,9 +64,8 @@
                 </div>
             </div>
         </div>
-    </div>
 }
 
 <div>
-    @Html.ActionLink(">>> Annuler <<<", "Index")
+    <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
 </div>

@@ -1,4 +1,6 @@
 ﻿@model WarehouseMVC_DAL.Models.Fournisseur
+@using WarehouseMVC.Infrastructure
+
 @{
     ViewBag.Title = "Details";
 }
@@ -6,10 +8,15 @@
 <h2>Détail du fournisseur</h2>
 
 <p>
-    @Html.ActionLink("Créer un fournisseur", "Create")
+    <b>@Html.ActionLink("Créer un fournisseur", "Create")</b>
 </p>
-<div class="jumbotron">
-    <h3>@Html.DisplayFor(model => model.Nom)</h3>
+
+@DateTime.Now.ToString("dd/MM/yyyy")
+<br />
+@SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+<div class="col-lg-offset-1">
+    <h3>Fournisseur n° @Html.DisplayFor(model => model.FournisseurId) - @Html.DisplayFor(model => model.Nom)</h3>
+</div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,8 +81,8 @@
     </dl>
     @Html.ActionLink("Modifier", "Edit", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
     @Html.ActionLink("Ajouter une catégorie", "AjoutCategorieFournisseur", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
-</div>
-<p>
-    @Html.ActionLink("<<< Retour à la liste", "Index")
-</p>
+
+    <p>
+        <br /><b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
+    </p>
 

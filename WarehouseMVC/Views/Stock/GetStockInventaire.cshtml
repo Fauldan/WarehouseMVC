@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WarehouseMVC_DAL.Models.Stock>
+@using WarehouseMVC.Infrastructure
+
+@{
+    ViewBag.Title = "GetStockInventaire";
+}
+
+<h2>Inventaire du stock</h2>
+
+@using (Html.BeginForm())
+{
+
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+    <table class="table">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArticleNom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalStock)
+            </th>
+            <th>
+                Quantité recomptée
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleNom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalStock)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => item.TotalStock, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(modelItem => item.TotalStock, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Confirmer la modification" class="btn btn-default" />
+            </div>
+        </div>
+
+}
+

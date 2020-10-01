@@ -7,46 +7,20 @@
 
 <h2>Supprimer le client</h2>
 
-<div>
-    <hr />
-    <div class="jumbotron">
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
         @DateTime.Now.ToString("dd/MM/yyyy")<br />
         @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Nom)
-            </dt>
+        <div class="col-lg-offset-1">
+            <h3>Client n° @Html.DisplayFor(model => model.ClientId) - @Html.DisplayFor(model => model.Nom) @Html.DisplayFor(model => model.Prenom) - @Html.DisplayFor(model => model.NomSociete)</h3>
+        </div>
+        <hr />
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
+        </div>
+        <br />
 
-            <dd>
-                @Html.DisplayFor(model => model.Nom)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Prenom)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Prenom)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.NomSociete)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NomSociete)
-            </dd>
-        </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
-            </div>
-            <br />
-            @Html.ActionLink(">>> Annuler <<<", "Index")
-        }
-    </div>
-</div>
+}
+<b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>

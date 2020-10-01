@@ -5,44 +5,44 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Mouvements de stock</h2>
 
-<div class="jumbotron">
-    @DateTime.Now.ToString("dd/MM/yyyy")<br />
+    @DateTime.Now.ToString("dd/MMM/yyyy") <br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+
+
     <table class="table">
         <tr>
             <th>
-                N°
+                @Html.ActionLink("StockId", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
 
             <th>
-                Date
+                @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
             </th>
 
             <th>
-                Activite
+                @Html.ActionLink("Activite", "Index", new { sortOrder = ViewBag.ActiviteSortParm })
             </th>
 
             <th>
-                N° Article
+                @Html.ActionLink("ArticleId", "Index", new { sortOrder = ViewBag.ArticleIdSortParm })
             </th>
 
             <th>
-                Article
+                @Html.ActionLink("Article", "Index", new { sortOrder = ViewBag.ArticleSortParm })
             </th>
 
             <th>
-                Quantite
+                @Html.ActionLink("Quantite", "Index", new { sortOrder = ViewBag.QuantiteSortParm })
             </th>
 
             <th>
-                Stock
+                @Html.ActionLink("Stock", "Index", new { sortOrder = ViewBag.StockSortParm })
             </th>
 
             <th>
-                Utilisateur
+                @Html.ActionLink("Utilisateur", "Index", new { sortOrder = ViewBag.UtilisateurSortParm })
             </th>
             <th></th>
         </tr>
@@ -81,16 +81,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.UtilisateurNom)
                 </td>
-
-                <td>
-                    @Html.ActionLink("Voir le détail", "Details", new { id = item.StockId }, new { @class = "btn btn-default" })
-                </td>
             </tr>
         }
     </table>
-</div>
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    <b>@Html.ActionLink("Générer un inventaire", "GetStockInventaire", new { @class = "btn btn-default" })</b>
+
+

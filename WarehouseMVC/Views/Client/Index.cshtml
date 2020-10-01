@@ -1,5 +1,6 @@
-﻿@model IEnumerable<WarehouseMVC_DAL.Models.Client>
+﻿@model PagedList.IPagedList<WarehouseMVC_DAL.Models.Client>
 @using WarehouseMVC.Infrastructure
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -8,28 +9,35 @@
 <h2>Liste des clients</h2>
 
 <p>
-    @Html.ActionLink("Ajouter un client", "Create")
+    <b>@Html.ActionLink("Ajouter un client", "Create")</b>
 </p>
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
     <br />
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nom)
+                @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NomSociete)
+                @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ville)
+                @Html.ActionLink("Société", "Index", new { sortOrder = ViewBag.NomSocieteSortParm })
             </th>
+            <th>
+                @Html.ActionLink("Ville", "Index", new { sortOrder = ViewBag.VilleSortParm })
+            </th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nom) @Html.DisplayFor(modelItem => item.Prenom)
                 </td>
@@ -47,7 +55,8 @@
             </tr>
         }
     </table>
-</div>
-<div>
-    @Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")
-</div>
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>

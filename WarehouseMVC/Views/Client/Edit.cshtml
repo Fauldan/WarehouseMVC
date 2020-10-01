@@ -5,17 +5,18 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Modification de l'article</h2>
+<h2>Modification du client</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-    <div class="form-horizontal">
 
+    <h3>Client n° @Html.DisplayFor(model => model.ClientId) - @Html.DisplayFor(model => model.Nom) @Html.DisplayFor(model => model.Prenom) - @Html.DisplayFor(model => model.NomSociete)</h3>
+    <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ClientId)
@@ -114,9 +115,9 @@
             </div>
         </div>
     </div>
-</div>
+
 }
 
 <div>
-    @Html.ActionLink(">>> Annuler <<<", "Index")
+    <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
 </div>

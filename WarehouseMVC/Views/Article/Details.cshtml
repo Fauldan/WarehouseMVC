@@ -8,14 +8,13 @@
 <h2>Détail de l'article</h2>
 
 <p>
-    @Html.ActionLink("Créer un article", "Create")
+    <b>@Html.ActionLink("Créer un article", "Create")</b>
 </p>
-<hr />
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
     <div class="col-lg-offset-1">
-        <h3>@Html.DisplayFor(model => model.Nom)</h3>
+        <h3>Article n° @Html.DisplayFor(model => model.ArticleId) - @Html.DisplayFor(model => model.Nom)</h3>
     </div>
     <hr />
     <dl class="dl-horizontal">
@@ -74,7 +73,8 @@
     @Html.ActionLink("Modifier", "Edit", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
     @Html.ActionLink("Créer une réception", "Create", "Reception", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
     @Html.ActionLink("Mouvements de stock", "GetMoveStock_By_ArticleId", "Stock", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
-</div>
+    @Html.ActionLink("Supprimer", "Delete", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
+
 <p>
-    @Html.ActionLink("<<< Retour à la liste", "Index")
+    <br /> <b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
 </p>

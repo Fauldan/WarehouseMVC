@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,14 +16,55 @@ namespace WarehouseMVC.Controllers
         private ArticleRepository _repo = new ArticleRepository();
         private StockRepository _repoStock = new StockRepository();
 
-        // GET: Article
+        // GET: ------------------------------------------------------------------- Liste des articles
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(_repo.Get());
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "articleId_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "Nom" ? "nom_desc" : "Nom";
+            ViewBag.CategorieSortParm = sortOrder == "Categorie" ? "categorie_desc" : "Categorie";
+
+
+            ViewBag.CurrentSort = sortOrder;
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            IEnumerable<Article> listarticle = _repo.Get();
+            switch (sortOrder)
+            {
+                case "articleId_desc":
+                    listarticle = listarticle.OrderByDescending(s => s.ArticleId);
+                    break;
+                case "Nom":
+                    listarticle = listarticle.OrderBy(s => s.Nom);
+                    break;
+                case "nom_desc":
+                    listarticle = listarticle.OrderByDescending(s => s.Nom);
+                    break;
+                case "Categorie":
+                    listarticle = listarticle.OrderBy(s => s.CategorieNom);
+                    break;
+                case "categorie_desc":
+                    listarticle = listarticle.OrderByDescending(s => s.CategorieNom);
+                    break;
+                default:
+                    listarticle = listarticle.OrderBy(s => s.ArticleId);
+                    break;
+            }
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(listarticle.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Article/Details/5
+        // GET: Article/Details/5 ------------------------------------------------- Détail de l'article
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Details(int id)
         {
@@ -34,7 +76,7 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // GET: Article/Create
+        // GET: Article/Create ---------------------------------------------------- Créer un nouvel article - appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Create()
         {
@@ -42,18 +84,16 @@ namespace WarehouseMVC.Controllers
             return View(form);
         }
 
-        // POST: Article/Create
+        // POST: Article/Create --------------------------------------------------- Créer un nouvel article - envoi du formulaire       
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         [HttpPost]
         public ActionResult Create(Article form)
         {
-            if (ModelState.IsValid)
-            {
-                _repo.Insert(form);
-            }
+            _repo.Insert(form);
             return RedirectToAction("Index");
         }
 
-        // GET: Article/Edit/5
+        // GET: Article/Edit/5 ---------------------------------------------------- Modifier un article - Get de l'article et appel du formulaire
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id)
         {
@@ -62,8 +102,9 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Article/Edit/5
+        // POST: Article/Edit/5 --------------------------------------------------- Modifier un article - envoi du formulaire
         [HttpPost]
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Edit(int id, Article form)
         {
             if (ModelState.IsValid)
@@ -73,7 +114,7 @@ namespace WarehouseMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Article/Delete/5
+        // GET: Article/Delete/5 -------------------------------------------------- Supprimer un article - Get de l'article
         [HttpGet]
         [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id)
@@ -82,7 +123,8 @@ namespace WarehouseMVC.Controllers
             return View(entity);
         }
 
-        // POST: Article/Delete/5
+        // POST: Article/Delete/5 ------------------------------------------------- Supprimer un article - Confirmation de suppression
+        [AuthorizeManager(UtilisateurRole.ADMIN | UtilisateurRole.USER)]
         public ActionResult Delete(int id, Article entity)
         {
             _repo.Delete(id);
@@ -90,10 +132,12 @@ namespace WarehouseMVC.Controllers
         }
 
 
-        [AuthorizeManager(UtilisateurRole.ADMIN)]
-        public ActionResult Secret()
-        {
-            return View();
-        }
+        // Zone ADMIN en Test  
+
+        //[AuthorizeManager(UtilisateurRole.ADMIN)]
+        //public ActionResult Secret()
+        //{
+        //    return View();
+        //}
     }
 }

@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="jumbotron">
+
         <div class="form-horizontal">
             @DateTime.Now.ToString("dd/MM/yyyy")<br />
             @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
@@ -47,11 +47,11 @@
                 </div>
             </div>
         </div>
-    </div>
+
 }
 
 <div>
-    @Html.ActionLink(">>> Annuler <<<", "Index", "Article")
+    <b>@Html.ActionLink(">>> Annuler <<<", "Index", "Article")</b>
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

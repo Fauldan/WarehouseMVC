@@ -111,6 +111,15 @@ namespace WarehouseMVC_DAL.Repositories
             string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
 
             return JsonConvert.DeserializeObject<Stock[]>(json);
+        }        
+        public IEnumerable<Stock> GetStockInventaire()
+        {
+            HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Stock/GetStockInventaire").Result;
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Stock[]>(json);
         }
     }
 }

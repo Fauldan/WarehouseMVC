@@ -1,5 +1,6 @@
-﻿@model IEnumerable<WarehouseMVC_DAL.Models.Categorie>
+﻿@model PagedList.IPagedList<WarehouseMVC_DAL.Models.Categorie>
 @using WarehouseMVC.Infrastructure
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -8,16 +9,19 @@
 <h2>Liste des catégories d'article</h2>
 
 <p>
-    @Html.ActionLink("Créer une nouvelle catégorie", "Create")
+    <b>@Html.ActionLink("Créer une nouvelle catégorie", "Create")</b>
 </p>
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
     <br />
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nom)
+                @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
             </th>
             <th></th>
         </tr>
@@ -26,17 +30,19 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.CategorieId)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Nom)
                 </td>
                 <td>
-                    @Html.ActionLink("Afficher les détails ", "Details", new { id = item.CategorieId }, new { @class = "btn btn-default" })
+                    @*@Html.ActionLink("Afficher les détails ", "Details", new { id = item.CategorieId }, new { @class = "btn btn-default" })*@
                     @Html.ActionLink("Modifier", "Edit", new { id = item.CategorieId }, new { @class = "btn btn-default" })
                     @Html.ActionLink("Supprimer", "Delete", new { id = item.CategorieId }, new { @class = "btn btn-default" })
                 </td>
             </tr>
         }
     </table>
-</div>
-<div>
-    @Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")
-</div>
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+<b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>

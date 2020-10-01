@@ -7,19 +7,13 @@
 
 <h2>Réception en attente de mise en stock</h2>
 
-<hr />
-<div class="jumbotron">
+
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+<h3>Réception n° @Html.DisplayFor(model => model.ReceptionId)</h3>
+<hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ReceptionId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReceptionId)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
@@ -86,7 +80,7 @@
     @Html.ActionLink("Confirmer la réception", "ConfirmReception", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
     @Html.ActionLink("Modifier", "Edit", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
     @Html.ActionLink("Annuler la réception", "Delete", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
-</div>
+
 <p>
-    @Html.ActionLink("<<< Retour à la liste", "Index")
+    <br /><b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
 </p>

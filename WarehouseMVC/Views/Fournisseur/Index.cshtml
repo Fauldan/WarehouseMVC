@@ -1,5 +1,6 @@
-﻿@model IEnumerable<WarehouseMVC_DAL.Models.Fournisseur>
+﻿@model PagedList.IPagedList<WarehouseMVC_DAL.Models.Fournisseur>
 @using WarehouseMVC.Infrastructure
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -8,26 +9,24 @@
 <h2>Liste des fournisseurs</h2>
 
 <p>
-    @Html.ActionLink("Ajouter un fournisseur", "Create")
+    <b>@Html.ActionLink("Ajouter un fournisseur", "Create")</b>
 </p>
-<div class="jumbotron">
+
     @DateTime.Now.ToString("dd/MM/yyyy")<br />
     @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
     <br />
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nom)
+                @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ville)
+                @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pays)
+                @Html.ActionLink("Ville", "Index", new { sortOrder = ViewBag.VilleSortParm })
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FournisseurId)
-            </th>
+
             <th></th>
         </tr>
 
@@ -35,17 +34,15 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.FournisseurId)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Nom)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ville)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pays)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FournisseurId)
-                </td>
+
                 <td>
                     @Html.ActionLink("Fiche fournisseur", "Details", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
                     @Html.ActionLink("Modifier", "Edit", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
@@ -54,8 +51,8 @@
             </tr>
         }
     </table>
-</div>
-<div>
-    @Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")
-</div>
 
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>
