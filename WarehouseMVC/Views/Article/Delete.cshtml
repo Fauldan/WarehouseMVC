@@ -4,24 +4,25 @@
 @{
     ViewBag.Title = "Delete";
 }
+    <div class="jumbotron">
+        <h2>Supprimer l'article</h2>
 
-<h2>Supprimer l'article</h2>
 
+        @using (Html.BeginForm())
+        {
 
-@using (Html.BeginForm())
-{
-    
-        @DateTime.Now.ToString("dd/MM/yyyy")<br />
-        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
 
-        <div class="col-lg-offset-1">
-            <h3>Article n° @Html.DisplayFor(model => model.ArticleId) - @Html.DisplayFor(model => model.Nom)</h3>
-        </div>
-        <hr />
+            <div class="col-lg-offset-1">
+                <h3>Article n° @Html.DisplayFor(model => model.ArticleId) - @Html.DisplayFor(model => model.Nom)</h3>
+            </div>
+            <hr />
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
-        </div>
-        <br />
-}
-<b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
+            <div class="form-actions no-color">
+                <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
+            </div>
+            <br />
+        }
+        <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
+    </div>

@@ -4,85 +4,87 @@
 @{
     ViewBag.Title = "Details";
 }
+    <div class="jumbotron">
+        <h2>Détail du fournisseur</h2>
 
-<h2>Détail du fournisseur</h2>
+        <p>
+            <b>@Html.ActionLink("Créer un fournisseur", "Create")</b>
+        </p>
 
-<p>
-    <b>@Html.ActionLink("Créer un fournisseur", "Create")</b>
-</p>
-
-@DateTime.Now.ToString("dd/MM/yyyy")
-<br />
-@SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-<div class="col-lg-offset-1">
-    <h3>Fournisseur n° @Html.DisplayFor(model => model.FournisseurId) - @Html.DisplayFor(model => model.Nom)</h3>
-</div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Nom
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
-        <dt>
-            Numéro TVA
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumTva)
-        </dd>
-        <dt>
-            Email
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            Téléphone
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumTel)
-        </dd>
-        <dt>
-            Rue et numéro
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Numero) @Html.DisplayFor(model => model.Rue)
-        </dd>
-        <dt>
-            Code postal
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CodePostal)
-        </dd>
-        <dt>
-            Ville
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Ville)
-        </dd>
-        <dt>
-            Pays
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Pays)
-        </dd>
+        @DateTime.Now.ToString("dd/MM/yyyy")
         <br />
-        <dt>
-            Catégories
-        </dt>
-        <dd>
-            @foreach (var element in Model.ListCategorie)
-            {
-                @Html.DisplayFor(m => element.Nom)
-                <br />
-            }
-        </dd>
-    </dl>
-    @Html.ActionLink("Modifier", "Edit", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Ajouter une catégorie", "AjoutCategorieFournisseur", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        <div class="col-lg-offset-1">
+            <h3>Fournisseur n° @Html.DisplayFor(model => model.FournisseurId) - @Html.DisplayFor(model => model.Nom)</h3>
+        </div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Nom
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt>
+                Numéro TVA
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumTva)
+            </dd>
+            <dt>
+                Email
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                Téléphone
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumTel)
+            </dd>
+            <dt>
+                Rue et numéro
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Numero) @Html.DisplayFor(model => model.Rue)
+            </dd>
+            <dt>
+                Code postal
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CodePostal)
+            </dd>
+            <dt>
+                Ville
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ville)
+            </dd>
+            <dt>
+                Pays
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Pays)
+            </dd>
+            <br />
+            <dt>
+                Catégories
+            </dt>
+            <dd>
+                @foreach (var element in Model.ListCategorie)
+                {
+                    @Html.DisplayFor(m => element.Nom)
+                    <br />
+                }
+            </dd>
+        </dl>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Ajouter une catégorie", "AjoutCategorieFournisseur", new { id = Model.FournisseurId }, new { @class = "btn btn-default" })
 
-    <p>
-        <br /><b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
-    </p>
 
+            <br />
+            <br />
+        <b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
+   
+</div>

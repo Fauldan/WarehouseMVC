@@ -5,44 +5,45 @@
 @{
     ViewBag.Title = "Index";
 }
+    <div class="jumbotron">
+        <h2>Liste des catégories d'article</h2>
 
-<h2>Liste des catégories d'article</h2>
+        <p>
+            <b>@Html.ActionLink("Créer une nouvelle catégorie", "Create")</b>
+        </p>
 
-<p>
-    <b>@Html.ActionLink("Créer une nouvelle catégorie", "Create")</b>
-</p>
-
-    @DateTime.Now.ToString("dd/MM/yyyy")<br />
-    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-    <br />
-    <table class="table">
-        <tr>
-            <th>
-                @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
-            </th>
-            <th>
-                @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        <br />
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategorieId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nom)
-                </td>
-                <td>
-                    @*@Html.ActionLink("Afficher les détails ", "Details", new { id = item.CategorieId }, new { @class = "btn btn-default" })*@
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.CategorieId }, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.CategorieId }, new { @class = "btn btn-default" })
-                </td>
+                <th>
+                    @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
+                </th>
+                <th></th>
             </tr>
-        }
-    </table>
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-<b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategorieId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Afficher les détails ", "Details", new { id = item.CategorieId }, new { @class = "btn btn-default" })*@
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.CategorieId }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.CategorieId }, new { @class = "btn btn-default" })
+                    </td>
+                </tr>
+            }
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        <b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>
+        </div>

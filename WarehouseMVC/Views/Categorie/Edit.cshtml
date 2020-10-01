@@ -4,38 +4,39 @@
 @{
     ViewBag.Title = "Edit";
 }
+    <div class="jumbotron">
+        <h2>Modification de la catégorie</h2>
 
-<h2>Modification de la catégorie</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
 
-        @DateTime.Now.ToString("dd/MM/yyyy")<br />
-        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-
-<h3>Catégorie n° @Html.DisplayFor(model => model.CategorieId) - @Html.DisplayFor(model => model.Nom)</h3>
-        <div class="form-horizontal">
-            <hr />
-            <div class="form-group">
-                <div class="col-lg-offset-1">
-                    <b>@Html.DisplayNameFor(model => model.Nom)</b>
+            <h3>Catégorie n° @Html.DisplayFor(model => model.CategorieId) - @Html.DisplayFor(model => model.Nom)</h3>
+            <div class="form-horizontal">
+                <hr />
+                <div class="form-group">
+                    <div class="col-lg-offset-1">
+                        <b>@Html.DisplayNameFor(model => model.Nom)</b>
+                    </div>
+                    <div class="col-lg-offset-1">
+                        @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div class="col-lg-offset-1">
-                    @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Confirmer la modification" class="btn btn-default" />
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Confirmer la modification" class="btn btn-default" />
-                </div>
-            </div>
+        }
+
+        <div>
+            <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
         </div>
-
-}
-
-<div>
-    <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
-</div>
+        </div>

@@ -5,54 +5,55 @@
 @{
     ViewBag.Title = "Index";
 }
+    <div class="jumbotron">
+        <h2>Liste des fournisseurs</h2>
 
-<h2>Liste des fournisseurs</h2>
+        <p>
+            <b>@Html.ActionLink("Ajouter un fournisseur", "Create")</b>
+        </p>
 
-<p>
-    <b>@Html.ActionLink("Ajouter un fournisseur", "Create")</b>
-</p>
-
-    @DateTime.Now.ToString("dd/MM/yyyy")<br />
-    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-    <br />
-    <table class="table">
-        <tr>
-            <th>
-                @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
-            </th>
-            <th>
-                @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
-            </th>
-            <th>
-                @Html.ActionLink("Ville", "Index", new { sortOrder = ViewBag.VilleSortParm })
-            </th>
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        <br />
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FournisseurId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ville)
-                </td>
+                <th>
+                    @Html.ActionLink("N°", "Index", new { sortOrder = ViewBag.IdSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Nom", "Index", new { sortOrder = ViewBag.NomSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Ville", "Index", new { sortOrder = ViewBag.VilleSortParm })
+                </th>
 
-                <td>
-                    @Html.ActionLink("Fiche fournisseur", "Details", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
-                </td>
+                <th></th>
             </tr>
-        }
-    </table>
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FournisseurId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ville)
+                    </td>
 
-<b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>
+                    <td>
+                        @Html.ActionLink("Fiche fournisseur", "Details", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.FournisseurId }, new { @class = "btn btn-default" })
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+        <b>@Html.ActionLink("<<< Retour à l'accueil", "Index", "Home")</b>
+        </div>

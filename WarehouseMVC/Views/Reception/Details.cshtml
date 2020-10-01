@@ -4,83 +4,86 @@
 @{
     ViewBag.Title = "Details";
 }
+    <div class="jumbotron">
+        <h2>Réception en attente de mise en stock</h2>
 
-<h2>Réception en attente de mise en stock</h2>
 
 
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        <h3>Réception n° @Html.DisplayFor(model => model.ReceptionId)</h3>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
 
-    @DateTime.Now.ToString("dd/MM/yyyy")<br />
-    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-<h3>Réception n° @Html.DisplayFor(model => model.ReceptionId)</h3>
-<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticleId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ArticleId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ArticleId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ArticleId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ArticleNom)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ArticleNom)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ArticleNom)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ArticleNom)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantite)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantite)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Quantite)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantite)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FournisseurNom)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FournisseurNom)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FournisseurNom)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FournisseurNom)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FournisseurVille)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FournisseurVille)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FournisseurVille)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FournisseurVille)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FournisseurPays)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FournisseurPays)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FournisseurPays)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FournisseurPays)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UtilisateurNom)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UtilisateurNom)  @Html.DisplayFor(model => model.UtilisateurPrenom)
+            </dd>
+        </dl>
+        @Html.ActionLink("Confirmer la réception", "ConfirmReception", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Annuler la réception", "Delete", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UtilisateurNom)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UtilisateurNom)  @Html.DisplayFor(model => model.UtilisateurPrenom)
-        </dd>
-    </dl>
-    @Html.ActionLink("Confirmer la réception", "ConfirmReception", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Modifier", "Edit", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Annuler la réception", "Delete", new { id = Model.ReceptionId }, new { @class = "btn btn-default" })
-
-<p>
-    <br /><b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
-</p>
+ 
+            <br />
+            <br />
+            <b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
+ 
+        </div>

@@ -4,72 +4,72 @@
 @{
     ViewBag.Title = "ConfirmExpedition";
 }
+    <div class="jumbotron">
+        <h2>Confirmer la sortie de stock</h2>
 
-<h2>Confirmer la sortie de stock</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+            <h3>Expédition n° @Model.ExpeditionId</h3>
 
-                @DateTime.Now.ToString("dd/MM/yyyy")<br />
-                @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-                <h3>Expédition n° @Model.ExpeditionId</h3>
+            <hr />
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ExpeditionId)
+                @Html.HiddenFor(model => model.ClientId)
 
-        <hr />
-        <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.ExpeditionId)
-            @Html.HiddenFor(model => model.ClientId)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ArticleNom, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.ArticleNom)
+                        @Html.ValidationMessageFor(model => model.ArticleNom, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ArticleNom, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.ArticleNom)
-                    @Html.ValidationMessageFor(model => model.ArticleNom, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategorieNom, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.CategorieNom)
+                        @Html.ValidationMessageFor(model => model.CategorieNom, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ClientNom, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.ClientNom) @Html.DisplayFor(model => model.ClientPrenom)
+                        @Html.ValidationMessageFor(model => model.ClientNom, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ClientNomSociete, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.ClientNomSociete)
+                        @Html.ValidationMessageFor(model => model.ClientNomSociete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quantite, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quantite, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quantite, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Confirmer" class="btn btn-default" />
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.CategorieNom, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.CategorieNom)
-                    @Html.ValidationMessageFor(model => model.CategorieNom, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        }
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ClientNom, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.ClientNom) @Html.DisplayFor(model => model.ClientPrenom)
-                    @Html.ValidationMessageFor(model => model.ClientNom, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ClientNomSociete, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.ClientNomSociete)
-                    @Html.ValidationMessageFor(model => model.ClientNomSociete, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Quantite, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Quantite, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Quantite, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Confirmer" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-
-}
-
-<div>
-    <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
-</div>
+        <div>
+            <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
+        </div></div>

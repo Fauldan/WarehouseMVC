@@ -4,77 +4,80 @@
 @{
     ViewBag.Title = "Details";
 }
+    <div class="jumbotron">
+        <h2>Détail de l'article</h2>
 
-<h2>Détail de l'article</h2>
+        <p>
+            <b>@Html.ActionLink("Créer un article", "Create")</b>
+        </p>
 
-<p>
-    <b>@Html.ActionLink("Créer un article", "Create")</b>
-</p>
+        @DateTime.Now.ToString("dd/MM/yyyy")<br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        <div class="col-lg-offset-1">
+            <h3>Article n° @Html.DisplayFor(model => model.ArticleId) - @Html.DisplayFor(model => model.Nom)</h3>
+        </div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
 
-    @DateTime.Now.ToString("dd/MM/yyyy")<br />
-    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-    <div class="col-lg-offset-1">
-        <h3>Article n° @Html.DisplayFor(model => model.ArticleId) - @Html.DisplayFor(model => model.Nom)</h3>
-    </div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
+            <dt>
+                Prix d'achat
+            </dt>
 
-        <dt>
-            Prix d'achat
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrixAchat) €
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PrixAchat) €
-        </dd>
+            <dt>
+                Prix de vente
+            </dt>
 
-        <dt>
-            Prix de vente
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrixVente) €
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PrixVente) €
-        </dd>
+            <dt>
+                Catégorie
+            </dt>
 
-        <dt>
-            Catégorie
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategorieNom)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategorieNom)
-        </dd>
+            <dt>
+                Stock actuel
+            </dt>
 
-        <dt>
-            Stock actuel
-        </dt>
+            <dd>
+                @ViewBag.Stock
+            </dd>
+            <br />
+            <dt>
+                Fournisseurs
+            </dt>
+            <dd>
+                @foreach (var element in Model.ListFournisseur)
+                {
+                    @Html.DisplayFor(m => element.Nom)
+                    <br />
+                }
+            </dd>
+        </dl>
 
-        <dd>
-            @ViewBag.Stock
-        </dd>
-        <br />
-        <dt>
-            Fournisseurs
-        </dt>
-        <dd>
-            @foreach (var element in Model.ListFournisseur)
-            {
-                @Html.DisplayFor(m => element.Nom)
-                <br />
-            }
-        </dd>
-    </dl>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Créer une réception", "Create", "Reception", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Mouvements de stock", "GetMoveStock_By_ArticleId", "Stock", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Supprimer", "Delete", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
 
-    @Html.ActionLink("Modifier", "Edit", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Créer une réception", "Create", "Reception", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Mouvements de stock", "GetMoveStock_By_ArticleId", "Stock", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
-    @Html.ActionLink("Supprimer", "Delete", new { id = Model.ArticleId }, new { @class = "btn btn-default" })
-
-<p>
-    <br /> <b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
-</p>
+      
+            <br /> 
+            <br /> 
+        <b>@Html.ActionLink("<<< Retour à la liste", "Index")</b>
+       
+        </div>

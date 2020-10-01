@@ -5,88 +5,89 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Mouvements de stock</h2>
+    <div class="jumbotron">
+        <h2>Mouvements de stock</h2>
 
-    @DateTime.Now.ToString("dd/MMM/yyyy") <br />
-    @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+        @DateTime.Now.ToString("dd/MMM/yyyy") <br />
+        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
 
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.ActionLink("StockId", "Index", new { sortOrder = ViewBag.NameSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("Activite", "Index", new { sortOrder = ViewBag.ActiviteSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("ArticleId", "Index", new { sortOrder = ViewBag.ArticleIdSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("Article", "Index", new { sortOrder = ViewBag.ArticleSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("Quantite", "Index", new { sortOrder = ViewBag.QuantiteSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("Stock", "Index", new { sortOrder = ViewBag.StockSortParm })
-            </th>
-
-            <th>
-                @Html.ActionLink("Utilisateur", "Index", new { sortOrder = ViewBag.UtilisateurSortParm })
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelitem => item.StockId)
-                </td>
+                <th>
+                    @Html.ActionLink("StockId", "Index", new { sortOrder = ViewBag.NameSortParm })
+                </th>
 
-                <td>
-                    @item.Date.ToString("dd/MM/yyyy")
-                </td>
+                <th>
+                    @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Activite)
-                </td>
+                <th>
+                    @Html.ActionLink("Activite", "Index", new { sortOrder = ViewBag.ActiviteSortParm })
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.ArticleId)
-                </td>
+                <th>
+                    @Html.ActionLink("ArticleId", "Index", new { sortOrder = ViewBag.ArticleIdSortParm })
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.ArticleNom)
-                </td>
+                <th>
+                    @Html.ActionLink("Article", "Index", new { sortOrder = ViewBag.ArticleSortParm })
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantite)
-                </td>
+                <th>
+                    @Html.ActionLink("Quantite", "Index", new { sortOrder = ViewBag.QuantiteSortParm })
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalStock)
-                </td>
+                <th>
+                    @Html.ActionLink("Stock", "Index", new { sortOrder = ViewBag.StockSortParm })
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.UtilisateurNom)
-                </td>
+                <th>
+                    @Html.ActionLink("Utilisateur", "Index", new { sortOrder = ViewBag.UtilisateurSortParm })
+                </th>
+                <th></th>
             </tr>
-        }
-    </table>
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-    <b>@Html.ActionLink("Générer un inventaire", "GetStockInventaire", new { @class = "btn btn-default" })</b>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.StockId)
+                    </td>
 
+                    <td>
+                        @item.Date.ToString("dd/MM/yyyy")
+                    </td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activite)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArticleId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArticleNom)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantite)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalStock)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UtilisateurNom)
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        <b>@Html.ActionLink("Générer un inventaire", "GetStockInventaire", new { @class = "btn btn-default" })</b>
+
+        </div>

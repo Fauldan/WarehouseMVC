@@ -4,30 +4,31 @@
 @{
     ViewBag.Title = "Delete";
 }
+    <div class="jumbotron">
+        <h2>Annulation de l'expédition</h2>
 
-<h2>Annulation de l'expédition</h2>
 
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
 
-        @DateTime.Now.ToString("dd/MM/yyyy")<br />
-        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+            <hr />
+            <div class="col-lg-offset-1">
+                <h3>Expédition n° @Html.DisplayFor(model => model.ExpeditionId) du @Html.DisplayFor(model => model.Date)</h3>
+                <h3>@Html.DisplayFor(model => model.ClientNom) @Html.DisplayFor(model => model.ClientPrenom) - @Html.DisplayFor(model => model.ClientNomSociete)</h3>
+                <h3>@Html.DisplayFor(model => model.ArticleNom)</h3>
+                <h3>Quantité : @Html.DisplayFor(model => model.Quantite)</h3>
+            </div>
+            <hr />
 
-        <hr />
-        <div class="col-lg-offset-1">
-            <h3>Expédition n° @Html.DisplayFor(model => model.ExpeditionId) du @Html.DisplayFor(model => model.Date)</h3>
-            <h3>@Html.DisplayFor(model => model.ClientNom) @Html.DisplayFor(model => model.ClientPrenom) - @Html.DisplayFor(model => model.ClientNomSociete)</h3>
-            <h3>@Html.DisplayFor(model => model.ArticleNom)</h3>
-            <h3>Quantité : @Html.DisplayFor(model => model.Quantite)</h3>
+            <div class="form-actions no-color">
+                <input type="submit" value="Annuler l'expédition" class="btn btn-default" />
+            </div>
+            <br />
+
+        }
+        <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
         </div>
-        <hr />
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Annuler l'expédition" class="btn btn-default" />
-        </div>
-        <br />
-
-}
-<b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>

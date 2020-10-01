@@ -4,23 +4,24 @@
 @{
     ViewBag.Title = "Delete";
 }
+    <div class="jumbotron">
+        <h2>Supprimer le client</h2>
 
-<h2>Supprimer le client</h2>
-
-<hr />
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-        @DateTime.Now.ToString("dd/MM/yyyy")<br />
-        @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
-        <div class="col-lg-offset-1">
-            <h3>Client n° @Html.DisplayFor(model => model.ClientId) - @Html.DisplayFor(model => model.Nom) @Html.DisplayFor(model => model.Prenom) - @Html.DisplayFor(model => model.NomSociete)</h3>
-        </div>
         <hr />
-        <div class="form-actions no-color">
-            <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
-        </div>
-        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @DateTime.Now.ToString("dd/MM/yyyy")<br />
+            @SessionManager.Utilisateur.Nom @SessionManager.Utilisateur.Prenom
+            <div class="col-lg-offset-1">
+                <h3>Client n° @Html.DisplayFor(model => model.ClientId) - @Html.DisplayFor(model => model.Nom) @Html.DisplayFor(model => model.Prenom) - @Html.DisplayFor(model => model.NomSociete)</h3>
+            </div>
+            <hr />
+            <div class="form-actions no-color">
+                <input type="submit" value="Confirmer la suppression" class="btn btn-default" />
+            </div>
+            <br />
 
-}
-<b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
+        }
+        <b>@Html.ActionLink(">>> Annuler <<<", "Index")</b>
+        </div>
